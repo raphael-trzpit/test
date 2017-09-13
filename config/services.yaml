@@ -13,17 +13,24 @@ services:
         # if you need to do this, you can override this setting on individual services
         public: false
 
+    _instanceof:
+        \Symfony\Component\Serializer\Normalizer\NormalizerInterface:
+            tags:
+                - serializer.normalizer
+        \Symfony\Component\Serializer\Normalizer\DenormalizerInterface:
+            tags:
+                - serializer.normalizer
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
-    App\:
+    Smartee\:
         resource: '../src/*'
         # you can exclude directories or files
         # but if a service is unused, it's removed anyway
-        exclude: '../src/{Entity,Repository,Tests}'
+        exclude: '../src/{Kernel,Entity,Repository,Tests}'
 
     # controllers are imported separately to make sure they're public
     # and have a tag that allows actions to type-hint services
-    App\Controller\:
-        resource: '../src/Controller'
+    Smartee\Application\Controller\:
+        resource: '../src/Application/Controller'
         public: true
         tags: ['controller.service_arguments']

@@ -7,3 +7,16 @@
 #controllers:
 #    resource: ../src/Controller/
 #    type: annotation
+
+idea_get:
+    path: /idea
+    defaults:
+      _controller: Smartee\Application\Controller\IdeaController::get
+    methods: GET
+
+idea_post:
+    path: /idea
+    defaults:
+        _controller: Smartee\Application\Controller\IdeaController::post
+    methods: POST
+
